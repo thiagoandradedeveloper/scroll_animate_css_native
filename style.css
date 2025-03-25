@@ -1,0 +1,121 @@
+*{
+    position: relative;
+}
+section{
+    position: relative;
+    width: 70%;
+    left: 15%;
+    padding-block: 30px;
+}
+#barra{
+    position: fixed;
+    transform-origin: left;
+    background-color: tomato;
+    height: 10px;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    animation: scAnime 1ms ease-in-out;
+    animation-timeline: scroll();
+}
+#buttonInf {
+    position: fixed;
+    transform-origin: left;
+    background-color: purple;
+    height: 55px;
+    width:  55px;
+    left: calc(100vw - 85px);
+    animation: moveAnime 1ms ease-in-out;
+    animation-timeline: scroll();
+    border-radius: 50%;
+}
+p{
+    text-align: justify;
+    animation: animateP 1ms ease-in-out;
+    animation-timeline: view();
+    animation-range: cover 0% cover 15%;
+    
+    /*animation-range: entry 0% exit 30%;*/
+    /*
+        cover → Quando o elemento já está na tela.
+        entry → Quando o elemento está entrando na tela.
+        exit → Quando o elemento está saindo da tela.
+    */
+}
+#containerImagens{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    user-select: none;
+}
+
+.imgScroll{
+    width: var(--size);
+    height: var(--size);
+    border-radius: 15px;
+    box-shadow: 6px 4px 4px grey;
+    border: thin solid black;
+    margin: 8px;
+}
+
+:root{
+    --size: 150px;
+    --delay: 0ms;
+    --delayAcrescimo: 200ms;
+    --valueTransition: 800ms
+}
+
+.imgScroll:nth-child(5){ transition-delay: var(--delay);  }
+.imgScroll:nth-child(4){ transition-delay: calc(var(--delay) + (var(--delayAcrescimo)*1)); }
+.imgScroll:nth-child(3){ transition-delay: calc(var(--delay) + (var(--delayAcrescimo)*2)); }
+.imgScroll:nth-child(2){ transition-delay: calc(var(--delay) + (var(--delayAcrescimo)*3)); }
+.imgScroll:nth-child(1){ transition-delay: calc(var(--delay) + (var(--delayAcrescimo)*4)); }
+
+.show{
+    transition: all var(--valueTransition);
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0px);
+}
+
+.hidden{
+    transition: none;
+    opacity: 0;
+    transform: translateX(-100%);
+    filter: blur(15px);
+}
+
+@keyframes animateP {
+    0%{
+        scale: 0 1;
+        opacity: 0;
+        translate: -100vw 0;
+    }
+    80%{
+        scale: 1 1;
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+@keyframes scAnime {
+    from{
+        scale: 0 1;
+    }
+    to{
+        scale: 1 1;
+    }
+}
+
+@keyframes moveAnime {
+    0%{
+        top:  40px;
+        opacity: 0;
+    }
+    5%{
+        top:  calc(100vh - 85px);
+        opacity: 1;
+    }
+}
