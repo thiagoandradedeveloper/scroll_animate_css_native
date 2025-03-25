@@ -110,11 +110,11 @@ p{
 }
 
 @keyframes moveAnime {
-    0%{
+    from{
         top:  40px;
         opacity: 0;
     }
-    5%{
+    to{
         top:  calc(100vh - 85px);
         opacity: 1;
     }
